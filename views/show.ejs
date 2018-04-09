@@ -6,7 +6,7 @@
 </head>
 <body>
 
-	<h1>Fruits show page</h1>
+	<h1><%= message %></h1>
 
 	<!-- lets make the template show the data 
 		the data available to you inside these brackets is the object you passed as the second parameter to res.render
@@ -22,10 +22,11 @@
  		The fruit is <font color="red"><b>NOT</b></font> ready to eat.
  	<% } %>
 
-
- 	CREATE A TEMPLATE FOR YOUR INDEX
- 	RENDER IT AT THE CORRECT ROUTE
- 	IT SHOULD LIST ALL THE FRUITS
- 	
+ 	<h1>
+ 	CREATE A TEMPLATE FOR YOUR INDEX<br>
+ 	RENDER IT AT THE CORRECT ROUTE<br>
+ 	IT SHOULD LIST ALL THE FRUITS, EACH ONE IN A &lt;UL&gt;<br>
+ 	EACH FRUIT SHOULD BE A LINK TO THE SHOW PAGE FOR THAT FRUIT
+ 	</h1>
 </body>
 </html>

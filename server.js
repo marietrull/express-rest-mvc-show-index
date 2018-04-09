@@ -7,7 +7,13 @@ const fruits = require('./models/fruits.js')
 
 // ****index*** route - this will list all the fruits
 app.get('/fruits', (req, res) => {
-	res.send(fruits);
+
+	// res.send(fruits);
+	res.render('index.ejs', {
+		theFruits: fruits, // <--data
+		pageTitle: "FRUITS INDEX"
+	})
+
 })
 
 // ** show ** route -- show all info about one particular fruit
@@ -20,7 +26,11 @@ app.get('/fruits/:id', (req, res) => {
 	// your data will ***ALWAYS*** be an object. 
 	// advice: use singular for show page
 	res.render('show.ejs', {
-		fruit: fruits[req.params.id]
+		fruit: fruits[req.params.id],
+		message: "HI I AM A MESSAGE",
+		secretMessageObject: {
+			secret: "this is a secret"
+		}
 	})
 
 })
