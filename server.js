@@ -16,7 +16,12 @@ app.get('/fruits/:id', (req, res) => {
 	// res.send(fruits[index])
 
 	// you "Render" templates where you previously just "send"ed data
-	res.render('show.ejs')
+	// the data you want to display in your template is the second parameter
+	// your data will ***ALWAYS*** be an object. 
+	// advice: use singular for show page
+	res.render('show.ejs', {
+		fruit: fruits[req.params.id]
+	})
 
 })
 
