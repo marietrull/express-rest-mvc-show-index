@@ -16,6 +16,13 @@ app.get('/fruits', (req, res) => {
 
 })
 
+//*** NEW ROUTE***
+//this route will show a template for the user to add fruits
+//put it her to avoid /fruits/:id
+app.get('/fruits/new', (req,res) => {
+	res.render('new.ejs') //we are rendering a template
+})
+
 // ** show ** route -- show all info about one particular fruit
 app.get('/fruits/:id', (req, res) => {
 	// const index = req.params.id
@@ -33,6 +40,11 @@ app.get('/fruits/:id', (req, res) => {
 		}
 	})
 
+})
+
+app.post('/fruits', (req, res) => {
+	console.log(req);
+	res.send('You Hit the Post Route!')
 })
 
 app.listen(3000, () => {
