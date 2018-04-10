@@ -1,9 +1,27 @@
 const express = require('express'); // note syntax for module (no . or /)
 const app = express();
+const bodyParser = require('body-parser')
 
 // our data
-// note the syntax for requiring file -- must start w/ "./"
+// note the syntax for requiring a file -- must start w/ "./"
 const fruits = require('./models/fruits.js')
+
+//***MIDDLEWARE***
+//you app.use middelware
+//next will continue on to the route
+//put this above the routes you're trying to intercept
+app.use((req, res, next) => {
+	console.log('I am Middleware and will be run for all routes. Thanks for stopping by.')	
+	next(); //callback to make it keep going
+})
+
+//We are using the body-parser middleware
+//it is a module (npm.org) that will let us see the form data in our POST requests
+app.use(bodyParser.urlencoded({extended: false}))
+
+
+
+
 
 // ****index*** route - this will list all the fruits
 app.get('/fruits', (req, res) => {
@@ -43,8 +61,30 @@ app.get('/fruits/:id', (req, res) => {
 })
 
 app.post('/fruits', (req, res) => {
-	console.log(req);
-	res.send('You Hit the Post Route!')
+	//now that we have body-parser the data is available to us in req.body
+	console.log(req.body);
+
+	//add a new object to our fruits array
+
+	const newFruit = {
+		name: req.body.name,
+		color: req.body.color,
+
+	}
+
+	//needs to be after newFruit is declared
+	if(req.body.readyToEat == 'on'){
+		newFruit.readyToEat = true;
+	} else newFruit.readyToEat = false;
+
+
+	//push new fruit into our array
+	fruits.push(newFruit);
+
+	//you can redirect the user in lieu of render or send
+
+	res.send("/fruits");
+	//res.send(req.body);
 })
 
 app.listen(3000, () => {
